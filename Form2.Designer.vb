@@ -29,13 +29,17 @@ Partial Class Form2
         btnLogin = New Button()
         Label1 = New Label()
         PictureBox1 = New PictureBox()
+        Label2 = New Label()
+        Label3 = New Label()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' lbluser
         ' 
         lbluser.AutoSize = True
+        lbluser.BackColor = Color.White
         lbluser.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lbluser.ForeColor = Color.Black
         lbluser.Location = New Point(210, 313)
         lbluser.Name = "lbluser"
         lbluser.Size = New Size(115, 31)
@@ -45,7 +49,9 @@ Partial Class Form2
         ' lblpass
         ' 
         lblpass.AutoSize = True
+        lblpass.BackColor = Color.White
         lblpass.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblpass.ForeColor = Color.Black
         lblpass.Location = New Point(222, 401)
         lblpass.Name = "lblpass"
         lblpass.Size = New Size(114, 31)
@@ -73,7 +79,7 @@ Partial Class Form2
         ' 
         ' btnLogin
         ' 
-        btnLogin.BackColor = Color.Blue
+        btnLogin.BackColor = Color.Green
         btnLogin.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnLogin.ForeColor = Color.White
         btnLogin.Location = New Point(389, 475)
@@ -86,30 +92,56 @@ Partial Class Form2
         ' Label1
         ' 
         Label1.AutoSize = True
+        Label1.BackColor = Color.White
         Label1.Font = New Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.ForeColor = Color.Blue
-        Label1.Location = New Point(197, 55)
+        Label1.ForeColor = Color.Green
+        Label1.Location = New Point(123, 56)
         Label1.Name = "Label1"
-        Label1.Size = New Size(545, 38)
+        Label1.Size = New Size(750, 38)
         Label1.TabIndex = 5
-        Label1.Text = "LIBRARY BOOKS MANAGEMENT SYTEM"
+        Label1.Text = "ADMIN BASED LIBRARY BOOKS MANAGEMENT SYTEM"
         ' 
         ' PictureBox1
         ' 
         PictureBox1.Image = My.Resources.Resources.images
-        PictureBox1.Location = New Point(355, 120)
+        PictureBox1.Location = New Point(365, 114)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(262, 158)
+        PictureBox1.Size = New Size(198, 119)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 6
         PictureBox1.TabStop = False
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.ForeColor = Color.DarkGreen
+        Label2.Location = New Point(335, 604)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(300, 28)
+        Label2.TabIndex = 7
+        Label2.Text = "©️ 2026.CSC 313 by GROUP-15"
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label3.ForeColor = Color.DarkGreen
+        Label3.Location = New Point(404, 248)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(118, 28)
+        Label3.TabIndex = 8
+        Label3.Text = "Login Form"
         ' 
         ' Form2
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.White
-        ClientSize = New Size(922, 677)
+        BackgroundImageLayout = ImageLayout.Stretch
+        ClientSize = New Size(964, 677)
+        Controls.Add(Label3)
+        Controls.Add(Label2)
         Controls.Add(PictureBox1)
         Controls.Add(Label1)
         Controls.Add(btnLogin)
@@ -131,4 +163,6 @@ Partial Class Form2
     Friend WithEvents btnLogin As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label3 As Label
 End Class

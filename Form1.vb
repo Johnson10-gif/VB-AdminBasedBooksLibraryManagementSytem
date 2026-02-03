@@ -1,8 +1,14 @@
-﻿Imports System.IO
+﻿
+Imports System.IO
+Imports System.Linq
+
 
 Public Class Form1
-    Dim books As New List(Of String)
+    Public Shared books As New List(Of String)
     Dim filePath As String = "library_books.txt"
+    Public Sub UpdateBookCount()
+        lblCount.Text = "Total Books: " & books.Count
+    End Sub
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -25,35 +31,10 @@ Public Class Form1
         UpdateCount()
     End Sub
 
+
     Private Sub btnDisplay_Click(sender As Object, e As EventArgs) Handles btnDisplay.Click
-        lstBooks.Items.Clear()
-        For Each b In books
-            lstBooks.Items.Add(b)
-        Next
-    End Sub
-
-    Private Sub btnBorrow_Click(sender As Object, e As EventArgs) Handles btnBorrow.Click
-        If lstBooks.SelectedIndex <> -1 Then
-            Dim selected As String = lstBooks.SelectedItem.ToString()
-            books(books.IndexOf(selected)) = selected.Replace("Available", "Borrowed")
-            btnDisplay.PerformClick()
-        End If
-    End Sub
-
-    Private Sub btnReturn_Click(sender As Object, e As EventArgs) Handles btnReturn.Click
-        If lstBooks.SelectedIndex <> -1 Then
-            Dim selected As String = lstBooks.SelectedItem.ToString()
-            books(books.IndexOf(selected)) = selected.Replace("Borrowed", "Available")
-            btnDisplay.PerformClick()
-        End If
-    End Sub
-
-    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        If lstBooks.SelectedIndex <> -1 Then
-            books.Remove(lstBooks.SelectedItem.ToString())
-            btnDisplay.PerformClick()
-            UpdateCount()
-        End If
+        Dim dispalyForm As New DisplayBooksForm()
+        DisplayBooksForm.Show()
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -76,12 +57,78 @@ Public Class Form1
 
     End Sub
 
-    Private Sub VScrollBar1_Scroll(sender As Object, e As ScrollEventArgs) Handles VScrollBar1.Scroll
-        Dim vScroll As New VScrollBar()
+    Private Sub VScrollBar1_Scroll(sender As Object, e As ScrollEventArgs)
+        Dim vScroll As New VScrollBar
         vScroll.Minimum = 0
         vScroll.Maximum = 100
         vScroll.Dock = DockStyle.Right
-        Me.Controls.Add(vScroll)
-        Me.AutoScroll = True
+        Controls.Add(vScroll)
+        AutoScroll = True
+    End Sub
+
+    Private Sub lstBooks_SelectedIndexChanged(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub mnuFile_Click(sender As Object, e As EventArgs) Handles mnuFile.Click
+
+    End Sub
+
+    Private Sub mnuLogout_Click(sender As Object, e As EventArgs) Handles mnuLogout.Click
+        Form2.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub mnuExit_Click(sender As Object, e As EventArgs) Handles mnuExit.Click
+        Application.Exit()
+    End Sub
+
+    Private Sub mnuAddBook_Click(sender As Object, e As EventArgs) Handles mnuAddBook.Click
+        Me.Show()
+    End Sub
+
+    Private Sub mnuDisplayBooks_Click(sender As Object, e As EventArgs) Handles mnuDisplayBooks.Click
+        Dim f As New DisplayBooksForm()
+        f.Show()
+    End Sub
+
+    Private Sub mnuBorrow_Click(sender As Object, e As EventArgs) Handles mnuBorrow.Click
+        Dim f As New DisplayBooksForm()
+        f.Show()
+    End Sub
+
+    Private Sub mnuReturn_Click(sender As Object, e As EventArgs) Handles mnuReturn.Click
+        Dim f As New DisplayBooksForm()
+        f.Show()
+    End Sub
+
+    Private Sub mnuTotalBooks_Click(sender As Object, e As EventArgs) Handles mnuTotalBooks.Click
+        MessageBox.Show("Total Books: " & books.Count, "Report")
+
+    End Sub
+
+    Private Sub mnuBorrowedBooks_Click(sender As Object, e As EventArgs) Handles mnuBorrowedBooks.Click
+        Dim borrowedCount As Integer = 0
+        For Each b As String In books
+            If b.Contains("Borrowed") Then
+                borrowedCount += 1
+            End If
+        Next
+        MessageBox.Show("Borrowed Books: " & borrowedCount)
+
+    End Sub
+
+    Private Sub mnuAvailableBooks_Click(sender As Object, e As EventArgs) Handles mnuAvailableBooks.Click
+        Dim availableCount As Integer = 0
+        For Each b As String In books
+            If b.Contains("Available") Then
+                availableCount += 1
+            End If
+        Next
+        MessageBox.Show("Available Books: " & availableCount)
+    End Sub
+
+    Private Sub mnuAbout_Click(sender As Object, e As EventArgs) Handles mnuAbout.Click
+        MessageBox.Show(" LibraryManagementSytem Admin Based Management sytem" & vbCrLf & "Developed by: mwecau", "About sytem")
     End Sub
 End Class
