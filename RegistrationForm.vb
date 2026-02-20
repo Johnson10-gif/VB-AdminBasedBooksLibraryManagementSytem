@@ -11,6 +11,8 @@ Public Class RegistrationForm
     Private lblFullName As Label
     Private lblUsername As Label
     Private lblPassword As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel2 As Panel
     Private lblConfirmPassword As Label
 
     Public Sub New()
@@ -29,12 +31,16 @@ Public Class RegistrationForm
         Me.txtConfirmPassword = New System.Windows.Forms.TextBox()
         Me.btnRegister = New System.Windows.Forms.Button()
         Me.btnBack = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitle
         '
         Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 16.0!, System.Drawing.FontStyle.Bold)
-        Me.lblTitle.Location = New System.Drawing.Point(85, 31)
+        Me.lblTitle.ForeColor = System.Drawing.Color.White
+        Me.lblTitle.Location = New System.Drawing.Point(141, 19)
         Me.lblTitle.Name = "lblTitle"
         Me.lblTitle.Size = New System.Drawing.Size(460, 40)
         Me.lblTitle.TabIndex = 0
@@ -43,8 +49,8 @@ Public Class RegistrationForm
         '
         'lblFullName
         '
-        Me.lblFullName.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFullName.Location = New System.Drawing.Point(76, 126)
+        Me.lblFullName.Font = New System.Drawing.Font("Times New Roman", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFullName.Location = New System.Drawing.Point(76, 180)
         Me.lblFullName.Name = "lblFullName"
         Me.lblFullName.Size = New System.Drawing.Size(100, 20)
         Me.lblFullName.TabIndex = 1
@@ -53,15 +59,16 @@ Public Class RegistrationForm
         'txtFullName
         '
         Me.txtFullName.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtFullName.Location = New System.Drawing.Point(80, 160)
+        Me.txtFullName.Location = New System.Drawing.Point(204, 155)
+        Me.txtFullName.Multiline = True
         Me.txtFullName.Name = "txtFullName"
-        Me.txtFullName.Size = New System.Drawing.Size(340, 30)
+        Me.txtFullName.Size = New System.Drawing.Size(340, 45)
         Me.txtFullName.TabIndex = 2
         '
         'lblUsername
         '
-        Me.lblUsername.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblUsername.Location = New System.Drawing.Point(76, 225)
+        Me.lblUsername.Font = New System.Drawing.Font("Times New Roman", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblUsername.Location = New System.Drawing.Point(76, 265)
         Me.lblUsername.Name = "lblUsername"
         Me.lblUsername.Size = New System.Drawing.Size(100, 20)
         Me.lblUsername.TabIndex = 3
@@ -70,15 +77,16 @@ Public Class RegistrationForm
         'txtUsername
         '
         Me.txtUsername.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtUsername.Location = New System.Drawing.Point(80, 258)
+        Me.txtUsername.Location = New System.Drawing.Point(204, 247)
+        Me.txtUsername.Multiline = True
         Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(340, 30)
+        Me.txtUsername.Size = New System.Drawing.Size(340, 38)
         Me.txtUsername.TabIndex = 4
         '
         'lblPassword
         '
-        Me.lblPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPassword.Location = New System.Drawing.Point(80, 325)
+        Me.lblPassword.Font = New System.Drawing.Font("Times New Roman", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPassword.Location = New System.Drawing.Point(76, 359)
         Me.lblPassword.Name = "lblPassword"
         Me.lblPassword.Size = New System.Drawing.Size(100, 20)
         Me.lblPassword.TabIndex = 5
@@ -87,16 +95,17 @@ Public Class RegistrationForm
         'txtPassword
         '
         Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtPassword.Location = New System.Drawing.Point(80, 348)
+        Me.txtPassword.Location = New System.Drawing.Point(204, 338)
+        Me.txtPassword.Multiline = True
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPassword.Size = New System.Drawing.Size(340, 30)
+        Me.txtPassword.Size = New System.Drawing.Size(340, 41)
         Me.txtPassword.TabIndex = 6
         '
         'lblConfirmPassword
         '
-        Me.lblConfirmPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblConfirmPassword.Location = New System.Drawing.Point(80, 403)
+        Me.lblConfirmPassword.Font = New System.Drawing.Font("Times New Roman", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblConfirmPassword.Location = New System.Drawing.Point(26, 448)
         Me.lblConfirmPassword.Name = "lblConfirmPassword"
         Me.lblConfirmPassword.Size = New System.Drawing.Size(172, 22)
         Me.lblConfirmPassword.TabIndex = 7
@@ -105,10 +114,11 @@ Public Class RegistrationForm
         'txtConfirmPassword
         '
         Me.txtConfirmPassword.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtConfirmPassword.Location = New System.Drawing.Point(84, 437)
+        Me.txtConfirmPassword.Location = New System.Drawing.Point(204, 432)
+        Me.txtConfirmPassword.Multiline = True
         Me.txtConfirmPassword.Name = "txtConfirmPassword"
         Me.txtConfirmPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtConfirmPassword.Size = New System.Drawing.Size(340, 30)
+        Me.txtConfirmPassword.Size = New System.Drawing.Size(340, 38)
         Me.txtConfirmPassword.TabIndex = 8
         '
         'btnRegister
@@ -117,9 +127,9 @@ Public Class RegistrationForm
         Me.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRegister.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnRegister.ForeColor = System.Drawing.Color.White
-        Me.btnRegister.Location = New System.Drawing.Point(84, 502)
+        Me.btnRegister.Location = New System.Drawing.Point(171, 528)
         Me.btnRegister.Name = "btnRegister"
-        Me.btnRegister.Size = New System.Drawing.Size(160, 35)
+        Me.btnRegister.Size = New System.Drawing.Size(160, 58)
         Me.btnRegister.TabIndex = 9
         Me.btnRegister.Text = "REGISTER"
         Me.btnRegister.UseVisualStyleBackColor = False
@@ -128,20 +138,38 @@ Public Class RegistrationForm
         '
         Me.btnBack.BackColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(139, Byte), Integer))
         Me.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnBack.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.btnBack.Font = New System.Drawing.Font("Segoe UI", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnBack.ForeColor = System.Drawing.Color.White
-        Me.btnBack.Location = New System.Drawing.Point(294, 502)
+        Me.btnBack.Location = New System.Drawing.Point(420, 528)
         Me.btnBack.Name = "btnBack"
-        Me.btnBack.Size = New System.Drawing.Size(160, 35)
+        Me.btnBack.Size = New System.Drawing.Size(160, 58)
         Me.btnBack.TabIndex = 10
         Me.btnBack.Text = "BACK TO LOGIN"
         Me.btnBack.UseVisualStyleBackColor = False
         '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(136, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.lblTitle)
+        Me.Panel1.Location = New System.Drawing.Point(0, 2)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(741, 104)
+        Me.Panel1.TabIndex = 11
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(136, Byte), Integer))
+        Me.Panel2.Location = New System.Drawing.Point(0, 606)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(741, 65)
+        Me.Panel2.TabIndex = 12
+        '
         'RegistrationForm
         '
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(627, 596)
-        Me.Controls.Add(Me.lblTitle)
+        Me.ClientSize = New System.Drawing.Size(742, 674)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.lblFullName)
         Me.Controls.Add(Me.txtFullName)
         Me.Controls.Add(Me.lblUsername)
@@ -158,6 +186,7 @@ Public Class RegistrationForm
         Me.Name = "RegistrationForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Library Management System - Registration"
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -227,4 +256,7 @@ Public Class RegistrationForm
         End If
     End Sub
 
+    Private Sub lblTitle_Click(sender As Object, e As EventArgs)
+
+    End Sub
 End Class

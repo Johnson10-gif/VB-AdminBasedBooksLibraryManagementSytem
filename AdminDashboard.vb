@@ -44,10 +44,12 @@ Public Class AdminDashboard
         form.ShowDialog()
     End Sub
 
+    Private isLoggingOut As Boolean = False
+
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to logout?", "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
-            Me.Hide()
+            isLoggingOut = True
             Dim loginForm As New LoginForm()
             loginForm.Show()
             Me.Close()
@@ -55,7 +57,7 @@ Public Class AdminDashboard
     End Sub
 
     Private Sub AdminDashboard_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        If e.CloseReason = CloseReason.UserClosing Then
+        If e.CloseReason = CloseReason.UserClosing AndAlso Not isLoggingOut Then
             Application.Exit()
         End If
     End Sub
