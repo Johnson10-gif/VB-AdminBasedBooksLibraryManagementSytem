@@ -1,26 +1,15 @@
 Imports System.Data.Common
 Imports System.Security.Cryptography
 Imports System.Text
+Imports System.Data.SqlClient
 
 Public Module DatabaseConnection
 
     Public ReadOnly con As DbConnection = CreateDbConnection()
 
     Private Function CreateDbConnection() As DbConnection
-        Dim connType As Type = Nothing
-
-        ' Try MySqlConnector then MySql.Data
-        connType = Type.GetType("MySqlConnector.MySqlConnection, MySqlConnector")
-        If connType Is Nothing Then
-            connType = Type.GetType("MySql.Data.MySqlClient.MySqlConnection, MySql.Data")
-        End If
-
-        If connType Is Nothing Then
-            Throw New Exception("MySQL ADO.NET provider not found. Install MySqlConnector or MySql.Data via NuGet.")
-        End If
-
-        Dim conn As DbConnection = DirectCast(Activator.CreateInstance(connType), DbConnection)
-        conn.ConnectionString = "Server=localhost;Database=librarydb;Uid=lib_user;Pwd=123;SslMode=none;"
+        Dim conn As New SqlConnection()
+        conn.ConnectionString = "Server=localhost\SQLEXPRESS;Database=librarydb;User Id=sa;Password=Library@2026;TrustServerCertificate=True;"
         Return conn
     End Function
 

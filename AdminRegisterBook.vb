@@ -1,4 +1,4 @@
-Imports MySql.Data.MySqlClient
+Imports System.Data.SqlClient
 
 Public Class AdminRegisterBook
     Inherits Form
@@ -15,6 +15,8 @@ Public Class AdminRegisterBook
     Friend WithEvents lblAuthor As Label
     Friend WithEvents lblYear As Label
     Friend WithEvents lblQuantity As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel2 As Panel
     Private lblTitle As Label
 
     Public Sub New()
@@ -35,13 +37,16 @@ Public Class AdminRegisterBook
         Me.txtQuantity = New System.Windows.Forms.TextBox()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitle
         '
         Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.lblTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(63, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(181, Byte), Integer))
-        Me.lblTitle.Location = New System.Drawing.Point(42, 33)
+        Me.lblTitle.ForeColor = System.Drawing.Color.White
+        Me.lblTitle.Location = New System.Drawing.Point(91, 33)
         Me.lblTitle.Name = "lblTitle"
         Me.lblTitle.Size = New System.Drawing.Size(460, 35)
         Me.lblTitle.TabIndex = 0
@@ -51,7 +56,7 @@ Public Class AdminRegisterBook
         'lblBookCode
         '
         Me.lblBookCode.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblBookCode.Location = New System.Drawing.Point(99, 119)
+        Me.lblBookCode.Location = New System.Drawing.Point(57, 173)
         Me.lblBookCode.Name = "lblBookCode"
         Me.lblBookCode.Size = New System.Drawing.Size(129, 32)
         Me.lblBookCode.TabIndex = 1
@@ -60,15 +65,16 @@ Public Class AdminRegisterBook
         'txtBookCode
         '
         Me.txtBookCode.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtBookCode.Location = New System.Drawing.Point(103, 154)
+        Me.txtBookCode.Location = New System.Drawing.Point(192, 162)
+        Me.txtBookCode.Multiline = True
         Me.txtBookCode.Name = "txtBookCode"
-        Me.txtBookCode.Size = New System.Drawing.Size(340, 30)
+        Me.txtBookCode.Size = New System.Drawing.Size(340, 43)
         Me.txtBookCode.TabIndex = 2
         '
         'lblBookTitle
         '
         Me.lblBookTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblBookTitle.Location = New System.Drawing.Point(99, 207)
+        Me.lblBookTitle.Location = New System.Drawing.Point(99, 270)
         Me.lblBookTitle.Name = "lblBookTitle"
         Me.lblBookTitle.Size = New System.Drawing.Size(100, 20)
         Me.lblBookTitle.TabIndex = 3
@@ -77,15 +83,16 @@ Public Class AdminRegisterBook
         'txtTitle
         '
         Me.txtTitle.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtTitle.Location = New System.Drawing.Point(103, 250)
+        Me.txtTitle.Location = New System.Drawing.Point(192, 248)
+        Me.txtTitle.Multiline = True
         Me.txtTitle.Name = "txtTitle"
-        Me.txtTitle.Size = New System.Drawing.Size(340, 30)
+        Me.txtTitle.Size = New System.Drawing.Size(340, 42)
         Me.txtTitle.TabIndex = 4
         '
         'lblAuthor
         '
         Me.lblAuthor.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAuthor.Location = New System.Drawing.Point(99, 293)
+        Me.lblAuthor.Location = New System.Drawing.Point(99, 351)
         Me.lblAuthor.Name = "lblAuthor"
         Me.lblAuthor.Size = New System.Drawing.Size(100, 20)
         Me.lblAuthor.TabIndex = 5
@@ -94,15 +101,16 @@ Public Class AdminRegisterBook
         'txtAuthor
         '
         Me.txtAuthor.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtAuthor.Location = New System.Drawing.Point(103, 326)
+        Me.txtAuthor.Location = New System.Drawing.Point(192, 331)
+        Me.txtAuthor.Multiline = True
         Me.txtAuthor.Name = "txtAuthor"
-        Me.txtAuthor.Size = New System.Drawing.Size(340, 30)
+        Me.txtAuthor.Size = New System.Drawing.Size(340, 40)
         Me.txtAuthor.TabIndex = 6
         '
         'lblYear
         '
         Me.lblYear.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblYear.Location = New System.Drawing.Point(99, 381)
+        Me.lblYear.Location = New System.Drawing.Point(160, 393)
         Me.lblYear.Name = "lblYear"
         Me.lblYear.Size = New System.Drawing.Size(100, 20)
         Me.lblYear.TabIndex = 7
@@ -111,15 +119,16 @@ Public Class AdminRegisterBook
         'txtYear
         '
         Me.txtYear.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtYear.Location = New System.Drawing.Point(103, 414)
+        Me.txtYear.Location = New System.Drawing.Point(155, 430)
+        Me.txtYear.Multiline = True
         Me.txtYear.Name = "txtYear"
-        Me.txtYear.Size = New System.Drawing.Size(150, 30)
+        Me.txtYear.Size = New System.Drawing.Size(150, 40)
         Me.txtYear.TabIndex = 8
         '
         'lblQuantity
         '
         Me.lblQuantity.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblQuantity.Location = New System.Drawing.Point(290, 381)
+        Me.lblQuantity.Location = New System.Drawing.Point(368, 393)
         Me.lblQuantity.Name = "lblQuantity"
         Me.lblQuantity.Size = New System.Drawing.Size(100, 20)
         Me.lblQuantity.TabIndex = 9
@@ -128,9 +137,10 @@ Public Class AdminRegisterBook
         'txtQuantity
         '
         Me.txtQuantity.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtQuantity.Location = New System.Drawing.Point(293, 414)
+        Me.txtQuantity.Location = New System.Drawing.Point(382, 430)
+        Me.txtQuantity.Multiline = True
         Me.txtQuantity.Name = "txtQuantity"
-        Me.txtQuantity.Size = New System.Drawing.Size(150, 30)
+        Me.txtQuantity.Size = New System.Drawing.Size(150, 40)
         Me.txtQuantity.TabIndex = 10
         Me.txtQuantity.Text = "1"
         '
@@ -140,7 +150,7 @@ Public Class AdminRegisterBook
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(123, 502)
+        Me.btnSave.Location = New System.Drawing.Point(185, 505)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(120, 35)
         Me.btnSave.TabIndex = 11
@@ -153,18 +163,36 @@ Public Class AdminRegisterBook
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancel.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnCancel.ForeColor = System.Drawing.Color.White
-        Me.btnCancel.Location = New System.Drawing.Point(293, 502)
+        Me.btnCancel.Location = New System.Drawing.Point(382, 505)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(120, 35)
         Me.btnCancel.TabIndex = 12
         Me.btnCancel.Text = "CANCEL"
         Me.btnCancel.UseVisualStyleBackColor = False
         '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(136, Byte), Integer))
+        Me.Panel1.Location = New System.Drawing.Point(1, 546)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(678, 59)
+        Me.Panel1.TabIndex = 13
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(136, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.lblTitle)
+        Me.Panel2.Location = New System.Drawing.Point(6, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(673, 111)
+        Me.Panel2.TabIndex = 14
+        '
         'AdminRegisterBook
         '
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(590, 616)
-        Me.Controls.Add(Me.lblTitle)
+        Me.ClientSize = New System.Drawing.Size(679, 605)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.lblBookCode)
         Me.Controls.Add(Me.txtBookCode)
         Me.Controls.Add(Me.lblBookTitle)
@@ -183,6 +211,7 @@ Public Class AdminRegisterBook
         Me.Name = "AdminRegisterBook"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Admin - Register Book"
+        Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

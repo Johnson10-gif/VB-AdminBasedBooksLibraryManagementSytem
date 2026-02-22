@@ -22,6 +22,7 @@ Partial Class LoginForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LoginForm))
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.lblSubtitle = New System.Windows.Forms.Label()
         Me.lblUsername = New System.Windows.Forms.Label()
@@ -53,7 +54,7 @@ Partial Class LoginForm
         '
         'lblSubtitle
         '
-        Me.lblSubtitle.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Italic)
+        Me.lblSubtitle.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSubtitle.ForeColor = System.Drawing.Color.WhiteSmoke
         Me.lblSubtitle.Location = New System.Drawing.Point(175, 71)
         Me.lblSubtitle.Name = "lblSubtitle"
@@ -124,7 +125,7 @@ Partial Class LoginForm
         Me.btnCreateAccount.ForeColor = System.Drawing.Color.White
         Me.btnCreateAccount.Location = New System.Drawing.Point(406, 447)
         Me.btnCreateAccount.Name = "btnCreateAccount"
-        Me.btnCreateAccount.Size = New System.Drawing.Size(199, 44)
+        Me.btnCreateAccount.Size = New System.Drawing.Size(217, 44)
         Me.btnCreateAccount.TabIndex = 7
         Me.btnCreateAccount.Text = "CREATE ACCOUNT"
         Me.btnCreateAccount.UseVisualStyleBackColor = False
@@ -174,10 +175,10 @@ Partial Class LoginForm
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image = Global.LibraryManagementSystemWithAdminControl.My.Resources.Resources._0001_4991608815770616405
-        Me.PictureBox1.Location = New System.Drawing.Point(253, 127)
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(296, 127)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(312, 190)
+        Me.PictureBox1.Size = New System.Drawing.Size(243, 156)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 11
         Me.PictureBox1.TabStop = False

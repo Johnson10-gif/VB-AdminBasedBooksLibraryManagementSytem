@@ -113,12 +113,6 @@
     </Compile>
     <Compile Include="DatabaseHelper.vb" />
     <Compile Include="DatabaseConnection.vb" />
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="LoginForm.Designer.vb">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </Compile>
@@ -167,22 +161,11 @@
     <Compile Include="UserReturnBook.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainApplication.Designer.vb">
-      <DependentUpon>MainApplication.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MainApplication.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -209,21 +192,14 @@
     <EmbeddedResource Include="AdminViewBookStatus.resx">
       <DependentUpon>AdminViewBookStatus.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminRegisterUser.resx">
       <DependentUpon>AdminRegisterUser.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainApplication.resx">
-      <DependentUpon>MainApplication.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -261,7 +237,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\images.jpg" />
+    <None Include="Resources\0001-4991608815770616405.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\0001-49916088157706164051.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

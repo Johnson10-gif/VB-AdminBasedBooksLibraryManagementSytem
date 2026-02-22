@@ -1,18 +1,17 @@
-Imports MySql.Data.MySqlClient
+Imports System.Data.SqlClient
 Imports System.Security.Cryptography
 Imports System.Text
 
 Public Module DatabaseHelper
 
-    ' Connection string for MySQL (XAMPP)
-    ' Adjust Server, Port, Database, Uid, and Pwd as needed
-    Private ReadOnly ConnectionString As String = "Server=localhost;Port=3306;Database=librarydb;Uid=root;Pwd=;SslMode=none;"
+    ' Connection string for SQL Server 2022
+    Private ReadOnly ConnectionString As String = "Server=localhost\SQLEXPRESS;Database=librarydb;User Id=sa;Password=Library@2026;TrustServerCertificate=True;"
 
     ''' <summary>
     ''' Gets a new MySQL connection
     ''' </summary>
-    Public Function GetConnection() As MySqlConnection
-        Return New MySqlConnection(ConnectionString)
+    Public Function GetConnection() As SqlConnection
+        Return New SqlConnection(ConnectionString)
     End Function
 
     ''' <summary>
@@ -29,7 +28,7 @@ Public Module DatabaseHelper
     ''' </summary>
     Public Function TestConnection() As Boolean
         Try
-            Using conn As MySqlConnection = GetConnection()
+            Using conn As SqlConnection = GetConnection()
                 conn.Open()
                 Return True
             End Using
@@ -43,14 +42,14 @@ Public Module DatabaseHelper
     ''' </summary>
     Public Function AuthenticateUser(username As String, password As String, ByRef userId As Integer, ByRef fullName As String, ByRef role As String) As Boolean
         Try
-            Using conn As MySqlConnection = GetConnection()
+            Using conn As SqlConnection = GetConnection()
                 conn.Open()
                 Dim query As String = "SELECT UserID, FullName, Role FROM Users WHERE Username=@username AND Password=@password"
-                Using cmd As New MySqlCommand(query, conn)
+                Using cmd As New SqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@username", username)
-                    cmd.Parameters.AddWithValue("@password", HashPassword(password))
+                    cmd.Parameters.Add("@password", SqlDbType.VarBinary).Value = HashPassword(password)
 
-                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
                             userId = Convert.ToInt32(reader("UserID"))
                             fullName = reader("FullName").ToString()
@@ -71,13 +70,13 @@ Public Module DatabaseHelper
     ''' </summary>
     Public Function RegisterUser(fullName As String, username As String, password As String, Optional role As String = "User") As Boolean
         Try
-            Using conn As MySqlConnection = GetConnection()
+            Using conn As SqlConnection = GetConnection()
                 conn.Open()
                 Dim query As String = "INSERT INTO Users (FullName, Username, Password, Role) VALUES (@fullName, @username, @password, @role)"
-                Using cmd As New MySqlCommand(query, conn)
+                Using cmd As New SqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@fullName", fullName)
                     cmd.Parameters.AddWithValue("@username", username)
-                    cmd.Parameters.AddWithValue("@password", HashPassword(password))
+                    cmd.Parameters.Add("@password", SqlDbType.VarBinary).Value = HashPassword(password)
                     cmd.Parameters.AddWithValue("@role", role)
 
                     cmd.ExecuteNonQuery()
@@ -94,10 +93,10 @@ Public Module DatabaseHelper
     ''' </summary>
     Public Function RegisterBook(bookCode As String, title As String, author As String, yearPublished As Integer, quantity As Integer) As Boolean
         Try
-            Using conn As MySqlConnection = GetConnection()
+            Using conn As SqlConnection = GetConnection()
                 conn.Open()
                 Dim query As String = "INSERT INTO Books (BookCode, Title, Author, YearPublished, Quantity) VALUES (@code, @title, @author, @year, @qty)"
-                Using cmd As New MySqlCommand(query, conn)
+                Using cmd As New SqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@code", If(String.IsNullOrEmpty(bookCode), DBNull.Value, CObj(bookCode)))
                     cmd.Parameters.AddWithValue("@title", title)
                     cmd.Parameters.AddWithValue("@author", If(String.IsNullOrEmpty(author), DBNull.Value, CObj(author)))
@@ -118,10 +117,10 @@ Public Module DatabaseHelper
     ''' </summary>
     Public Function SubmitBorrowRequest(userId As Integer, bookId As Integer) As Boolean
         Try
-            Using conn As MySqlConnection = GetConnection()
+            Using conn As SqlConnection = GetConnection()
                 conn.Open()
                 Dim query As String = "INSERT INTO BorrowRequests (UserID, BookID, RequestDate, Status) VALUES (@userId, @bookId, @date, 'Pending')"
-                Using cmd As New MySqlCommand(query, conn)
+                Using cmd As New SqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@userId", userId)
                     cmd.Parameters.AddWithValue("@bookId", bookId)
                     cmd.Parameters.AddWithValue("@date", DateTime.Now)
@@ -140,10 +139,10 @@ Public Module DatabaseHelper
     ''' </summary>
     Public Function SubmitReturnRequest(userId As Integer, bookId As Integer) As Boolean
         Try
-            Using conn As MySqlConnection = GetConnection()
+            Using conn As SqlConnection = GetConnection()
                 conn.Open()
                 Dim query As String = "INSERT INTO ReturnRequests (UserID, BookID, RequestDate, Status) VALUES (@userId, @bookId, @date, 'Pending')"
-                Using cmd As New MySqlCommand(query, conn)
+                Using cmd As New SqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@userId", userId)
                     cmd.Parameters.AddWithValue("@bookId", bookId)
                     cmd.Parameters.AddWithValue("@date", DateTime.Now)
@@ -162,10 +161,10 @@ Public Module DatabaseHelper
     ''' </summary>
     Public Function ApproveBorrowRequest(requestId As Integer) As Boolean
         Try
-            Using conn As MySqlConnection = GetConnection()
+            Using conn As SqlConnection = GetConnection()
                 conn.Open()
                 Dim query As String = "UPDATE BorrowRequests SET Status='Approved' WHERE BorrowRequestID=@id"
-                Using cmd As New MySqlCommand(query, conn)
+                Using cmd As New SqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@id", requestId)
                     cmd.ExecuteNonQuery()
                     Return True
@@ -181,10 +180,10 @@ Public Module DatabaseHelper
     ''' </summary>
     Public Function ApproveReturnRequest(requestId As Integer) As Boolean
         Try
-            Using conn As MySqlConnection = GetConnection()
+            Using conn As SqlConnection = GetConnection()
                 conn.Open()
                 Dim query As String = "UPDATE ReturnRequests SET Status='Approved' WHERE ReturnRequestID=@id"
-                Using cmd As New MySqlCommand(query, conn)
+                Using cmd As New SqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@id", requestId)
                     cmd.ExecuteNonQuery()
                     Return True
@@ -200,13 +199,13 @@ Public Module DatabaseHelper
     ''' </summary>
     Public Function IsBookAvailable(bookId As Integer, ByRef bookTitle As String, ByRef quantity As Integer) As Boolean
         Try
-            Using conn As MySqlConnection = GetConnection()
+            Using conn As SqlConnection = GetConnection()
                 conn.Open()
                 Dim query As String = "SELECT Title, Quantity FROM Books WHERE BookID=@id"
-                Using cmd As New MySqlCommand(query, conn)
+                Using cmd As New SqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@id", bookId)
 
-                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
                             bookTitle = reader("Title").ToString()
                             quantity = Convert.ToInt32(reader("Quantity"))

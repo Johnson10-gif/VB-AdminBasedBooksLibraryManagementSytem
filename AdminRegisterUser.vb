@@ -1,4 +1,4 @@
-Imports MySql.Data.MySqlClient
+Imports System.Data.SqlClient
 
 Public Class AdminRegisterUser
 
@@ -38,4 +38,7 @@ Public Class AdminRegisterUser
         Me.Close()
     End Sub
 
+    Private Sub AdminRegisterUser_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

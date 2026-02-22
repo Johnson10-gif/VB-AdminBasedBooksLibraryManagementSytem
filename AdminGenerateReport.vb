@@ -1,4 +1,5 @@
-Imports MySql.Data.MySqlClient
+Imports System.Data.SqlClient
+Imports System.Data
 
 Public Class AdminGenerateReport
     Inherits Form
@@ -6,6 +7,8 @@ Public Class AdminGenerateReport
     Private WithEvents txtReport As TextBox
     Private WithEvents btnGenerate As Button
     Private WithEvents btnClose As Button
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel2 As Panel
     Private lblTitle As Label
 
     Public Sub New()
@@ -18,13 +21,16 @@ Public Class AdminGenerateReport
         Me.txtReport = New System.Windows.Forms.TextBox()
         Me.btnGenerate = New System.Windows.Forms.Button()
         Me.btnClose = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitle
         '
         Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.lblTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(76, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.lblTitle.Location = New System.Drawing.Point(20, 20)
+        Me.lblTitle.ForeColor = System.Drawing.Color.WhiteSmoke
+        Me.lblTitle.Location = New System.Drawing.Point(73, 7)
         Me.lblTitle.Name = "lblTitle"
         Me.lblTitle.Size = New System.Drawing.Size(660, 35)
         Me.lblTitle.TabIndex = 0
@@ -34,12 +40,12 @@ Public Class AdminGenerateReport
         'txtReport
         '
         Me.txtReport.Font = New System.Drawing.Font("Consolas", 10.0!)
-        Me.txtReport.Location = New System.Drawing.Point(20, 70)
+        Me.txtReport.Location = New System.Drawing.Point(60, 73)
         Me.txtReport.Multiline = True
         Me.txtReport.Name = "txtReport"
         Me.txtReport.ReadOnly = True
         Me.txtReport.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtReport.Size = New System.Drawing.Size(660, 440)
+        Me.txtReport.Size = New System.Drawing.Size(685, 441)
         Me.txtReport.TabIndex = 1
         '
         'btnGenerate
@@ -48,7 +54,7 @@ Public Class AdminGenerateReport
         Me.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnGenerate.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnGenerate.ForeColor = System.Drawing.Color.White
-        Me.btnGenerate.Location = New System.Drawing.Point(220, 520)
+        Me.btnGenerate.Location = New System.Drawing.Point(265, 536)
         Me.btnGenerate.Name = "btnGenerate"
         Me.btnGenerate.Size = New System.Drawing.Size(130, 35)
         Me.btnGenerate.TabIndex = 2
@@ -61,18 +67,36 @@ Public Class AdminGenerateReport
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClose.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnClose.ForeColor = System.Drawing.Color.White
-        Me.btnClose.Location = New System.Drawing.Point(370, 520)
+        Me.btnClose.Location = New System.Drawing.Point(452, 536)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(130, 35)
         Me.btnClose.TabIndex = 3
         Me.btnClose.Text = "CLOSE"
         Me.btnClose.UseVisualStyleBackColor = False
         '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(136, Byte), Integer))
+        Me.Panel1.Location = New System.Drawing.Point(2, 577)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(820, 62)
+        Me.Panel1.TabIndex = 4
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(136, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.lblTitle)
+        Me.Panel2.Location = New System.Drawing.Point(6, 2)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(816, 65)
+        Me.Panel2.TabIndex = 5
+        '
         'AdminGenerateReport
         '
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(824, 641)
-        Me.Controls.Add(Me.lblTitle)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.txtReport)
         Me.Controls.Add(Me.btnGenerate)
         Me.Controls.Add(Me.btnClose)
@@ -81,6 +105,7 @@ Public Class AdminGenerateReport
         Me.Name = "AdminGenerateReport"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Admin - Generate Report"
+        Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -100,53 +125,53 @@ Public Class AdminGenerateReport
             report.AppendLine("_______________________________________________________________")
             report.AppendLine()
 
-            Using conn As MySqlConnection = DatabaseHelper.GetConnection()
+            Using conn As SqlConnection = DatabaseHelper.GetConnection()
                 conn.Open()
 
                 ' Total Books
-                Using cmd As New MySqlCommand("SELECT COUNT(*) FROM Books", conn)
+                Using cmd As New SqlCommand("SELECT COUNT(*) FROM Books", conn)
                     Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
                     report.AppendLine("Total Books in Library:              " & count)
                 End Using
 
                 ' Total Book Copies
-                Using cmd As New MySqlCommand("SELECT IFNULL(SUM(Quantity), 0) FROM Books", conn)
+                Using cmd As New SqlCommand("SELECT ISNULL(SUM(Quantity), 0) FROM Books", conn)
                     Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
                     report.AppendLine("Total Book Copies:                   " & count)
                 End Using
 
                 ' Available Books
-                Using cmd As New MySqlCommand("SELECT COUNT(*) FROM Books WHERE Quantity > 0", conn)
+                Using cmd As New SqlCommand("SELECT COUNT(*) FROM Books WHERE Quantity > 0", conn)
                     Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
                     report.AppendLine("Books Currently Available:           " & count)
                 End Using
 
                 ' Total Users
-                Using cmd As New MySqlCommand("SELECT COUNT(*) FROM Users WHERE Role='User'", conn)
+                Using cmd As New SqlCommand("SELECT COUNT(*) FROM Users WHERE Role='User'", conn)
                     Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
                     report.AppendLine("Total Registered Users:              " & count)
                 End Using
 
                 ' Pending Borrow Requests
-                Using cmd As New MySqlCommand("SELECT COUNT(*) FROM BorrowRequests WHERE Status='Pending'", conn)
+                Using cmd As New SqlCommand("SELECT COUNT(*) FROM BorrowRequests WHERE Status='Pending'", conn)
                     Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
                     report.AppendLine("Pending Borrow Requests:             " & count)
                 End Using
 
                 ' Approved Borrow Requests
-                Using cmd As New MySqlCommand("SELECT COUNT(*) FROM BorrowRequests WHERE Status='Approved'", conn)
+                Using cmd As New SqlCommand("SELECT COUNT(*) FROM BorrowRequests WHERE Status='Approved'", conn)
                     Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
                     report.AppendLine("Approved Borrow Requests:            " & count)
                 End Using
 
                 ' Pending Return Requests
-                Using cmd As New MySqlCommand("SELECT COUNT(*) FROM ReturnRequests WHERE Status='Pending'", conn)
+                Using cmd As New SqlCommand("SELECT COUNT(*) FROM ReturnRequests WHERE Status='Pending'", conn)
                     Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
                     report.AppendLine("Pending Return Requests:             " & count)
                 End Using
 
                 ' Approved Return Requests
-                Using cmd As New MySqlCommand("SELECT COUNT(*) FROM ReturnRequests WHERE Status='Approved'", conn)
+                Using cmd As New SqlCommand("SELECT COUNT(*) FROM ReturnRequests WHERE Status='Approved'", conn)
                     Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
                     report.AppendLine("Approved Return Requests:            " & count)
                 End Using
@@ -157,14 +182,14 @@ Public Class AdminGenerateReport
                 report.AppendLine("_______________________________________________________________")
                 report.AppendLine()
 
-                Dim topBooksQuery As String = "SELECT b.Title, b.Author, COUNT(*) AS RequestCount " &
+                Dim topBooksQuery As String = "SELECT TOP 5 b.Title, b.Author, COUNT(*) AS RequestCount " &
                                               "FROM BorrowRequests br " &
                                               "INNER JOIN Books b ON br.BookID = b.BookID " &
                                               "GROUP BY b.Title, b.Author " &
-                                              "ORDER BY RequestCount DESC LIMIT 5"
+                                              "ORDER BY RequestCount DESC"
 
-                Using cmd As New MySqlCommand(topBooksQuery, conn)
-                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                Using cmd As New SqlCommand(topBooksQuery, conn)
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
                         Dim rank As Integer = 1
                         If reader.HasRows Then
                             While reader.Read()
@@ -191,8 +216,8 @@ Public Class AdminGenerateReport
                                             "WHERE Quantity < 3 AND Quantity >= 0 " &
                                             "ORDER BY Quantity"
 
-                Using cmd As New MySqlCommand(lowQtyQuery, conn)
-                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                Using cmd As New SqlCommand(lowQtyQuery, conn)
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
                         If reader.HasRows Then
                             While reader.Read()
                                 report.AppendLine("Book: " & reader("Title").ToString())
@@ -227,6 +252,10 @@ Public Class AdminGenerateReport
     End Sub
 
     Private Sub txtReport_TextChanged(sender As Object, e As EventArgs) Handles txtReport.TextChanged
+
+    End Sub
+
+    Private Sub AdminGenerateReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
 End Class

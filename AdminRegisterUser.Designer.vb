@@ -32,15 +32,18 @@ Partial Class AdminRegisterUser
         Me.lblInfo = New System.Windows.Forms.Label()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitle
         '
         Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(136, Byte), Integer))
-        Me.lblTitle.Location = New System.Drawing.Point(60, 28)
+        Me.lblTitle.ForeColor = System.Drawing.Color.White
+        Me.lblTitle.Location = New System.Drawing.Point(111, 13)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(460, 35)
+        Me.lblTitle.Size = New System.Drawing.Size(460, 50)
         Me.lblTitle.TabIndex = 0
         Me.lblTitle.Text = "REGISTER NEW USER"
         Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -49,7 +52,7 @@ Partial Class AdminRegisterUser
         '
         Me.lblFullName.AutoSize = True
         Me.lblFullName.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFullName.Location = New System.Drawing.Point(80, 143)
+        Me.lblFullName.Location = New System.Drawing.Point(80, 164)
         Me.lblFullName.Name = "lblFullName"
         Me.lblFullName.Size = New System.Drawing.Size(100, 20)
         Me.lblFullName.TabIndex = 1
@@ -58,16 +61,17 @@ Partial Class AdminRegisterUser
         'txtFullName
         '
         Me.txtFullName.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtFullName.Location = New System.Drawing.Point(131, 180)
+        Me.txtFullName.Location = New System.Drawing.Point(131, 196)
+        Me.txtFullName.Multiline = True
         Me.txtFullName.Name = "txtFullName"
-        Me.txtFullName.Size = New System.Drawing.Size(340, 30)
+        Me.txtFullName.Size = New System.Drawing.Size(340, 55)
         Me.txtFullName.TabIndex = 2
         '
         'lblUsername
         '
         Me.lblUsername.AutoSize = True
         Me.lblUsername.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblUsername.Location = New System.Drawing.Point(80, 229)
+        Me.lblUsername.Location = New System.Drawing.Point(80, 270)
         Me.lblUsername.Name = "lblUsername"
         Me.lblUsername.Size = New System.Drawing.Size(100, 20)
         Me.lblUsername.TabIndex = 3
@@ -76,16 +80,17 @@ Partial Class AdminRegisterUser
         'txtUsername
         '
         Me.txtUsername.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtUsername.Location = New System.Drawing.Point(131, 265)
+        Me.txtUsername.Location = New System.Drawing.Point(131, 304)
+        Me.txtUsername.Multiline = True
         Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(340, 30)
+        Me.txtUsername.Size = New System.Drawing.Size(340, 50)
         Me.txtUsername.TabIndex = 4
         '
         'lblPassword
         '
         Me.lblPassword.AutoSize = True
         Me.lblPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPassword.Location = New System.Drawing.Point(80, 314)
+        Me.lblPassword.Location = New System.Drawing.Point(80, 357)
         Me.lblPassword.Name = "lblPassword"
         Me.lblPassword.Size = New System.Drawing.Size(309, 20)
         Me.lblPassword.TabIndex = 5
@@ -94,16 +99,17 @@ Partial Class AdminRegisterUser
         'txtPassword
         '
         Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtPassword.Location = New System.Drawing.Point(131, 348)
+        Me.txtPassword.Location = New System.Drawing.Point(131, 389)
+        Me.txtPassword.Multiline = True
         Me.txtPassword.Name = "txtPassword"
-        Me.txtPassword.Size = New System.Drawing.Size(340, 30)
+        Me.txtPassword.Size = New System.Drawing.Size(340, 43)
         Me.txtPassword.TabIndex = 6
         '
         'lblInfo
         '
         Me.lblInfo.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Italic)
         Me.lblInfo.ForeColor = System.Drawing.Color.Gray
-        Me.lblInfo.Location = New System.Drawing.Point(51, 405)
+        Me.lblInfo.Location = New System.Drawing.Point(62, 445)
         Me.lblInfo.Name = "lblInfo"
         Me.lblInfo.Size = New System.Drawing.Size(510, 35)
         Me.lblInfo.TabIndex = 7
@@ -115,7 +121,7 @@ Partial Class AdminRegisterUser
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(131, 472)
+        Me.btnSave.Location = New System.Drawing.Point(147, 504)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(120, 35)
         Me.btnSave.TabIndex = 8
@@ -128,19 +134,38 @@ Partial Class AdminRegisterUser
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancel.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnCancel.ForeColor = System.Drawing.Color.White
-        Me.btnCancel.Location = New System.Drawing.Point(351, 472)
+        Me.btnCancel.Location = New System.Drawing.Point(351, 504)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(120, 35)
         Me.btnCancel.TabIndex = 9
         Me.btnCancel.Text = "CANCEL"
         Me.btnCancel.UseVisualStyleBackColor = False
         '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(136, Byte), Integer))
+        Me.Panel1.Location = New System.Drawing.Point(1, 554)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(649, 69)
+        Me.Panel1.TabIndex = 10
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(136, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.lblTitle)
+        Me.Panel2.Location = New System.Drawing.Point(1, 5)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(649, 82)
+        Me.Panel2.TabIndex = 11
+        '
         'AdminRegisterUser
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(650, 560)
+        Me.ClientSize = New System.Drawing.Size(650, 622)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.lblInfo)
@@ -150,13 +175,13 @@ Partial Class AdminRegisterUser
         Me.Controls.Add(Me.lblUsername)
         Me.Controls.Add(Me.txtFullName)
         Me.Controls.Add(Me.lblFullName)
-        Me.Controls.Add(Me.lblTitle)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "AdminRegisterUser"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Admin - Register User"
+        Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -172,4 +197,6 @@ Partial Class AdminRegisterUser
     Friend WithEvents lblInfo As Label
     Friend WithEvents btnSave As Button
     Friend WithEvents btnCancel As Button
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel2 As Panel
 End Class

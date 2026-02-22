@@ -1,4 +1,4 @@
-Imports MySql.Data.MySqlClient
+Imports System.Data.SqlClient
 
 Public Class AdminPermitReturn
     Inherits Form
@@ -8,6 +8,8 @@ Public Class AdminPermitReturn
     Private WithEvents btnRefresh As Button
     Private WithEvents btnClose As Button
     Friend WithEvents lblInfo As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel2 As Panel
     Private lblTitle As Label
 
     Public Sub New()
@@ -22,14 +24,17 @@ Public Class AdminPermitReturn
         Me.btnApprove = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.btnClose = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         CType(Me.dgvRequests, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitle
         '
         Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.lblTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.lblTitle.Location = New System.Drawing.Point(20, 20)
+        Me.lblTitle.ForeColor = System.Drawing.Color.White
+        Me.lblTitle.Location = New System.Drawing.Point(25, 18)
         Me.lblTitle.Name = "lblTitle"
         Me.lblTitle.Size = New System.Drawing.Size(860, 35)
         Me.lblTitle.TabIndex = 0
@@ -39,7 +44,7 @@ Public Class AdminPermitReturn
         'lblInfo
         '
         Me.lblInfo.ForeColor = System.Drawing.Color.Gray
-        Me.lblInfo.Location = New System.Drawing.Point(20, 65)
+        Me.lblInfo.Location = New System.Drawing.Point(41, 125)
         Me.lblInfo.Name = "lblInfo"
         Me.lblInfo.Size = New System.Drawing.Size(860, 20)
         Me.lblInfo.TabIndex = 1
@@ -51,7 +56,7 @@ Public Class AdminPermitReturn
         Me.dgvRequests.AllowUserToDeleteRows = False
         Me.dgvRequests.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvRequests.ColumnHeadersHeight = 29
-        Me.dgvRequests.Location = New System.Drawing.Point(20, 100)
+        Me.dgvRequests.Location = New System.Drawing.Point(44, 158)
         Me.dgvRequests.MultiSelect = False
         Me.dgvRequests.Name = "dgvRequests"
         Me.dgvRequests.ReadOnly = True
@@ -66,7 +71,7 @@ Public Class AdminPermitReturn
         Me.btnApprove.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnApprove.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnApprove.ForeColor = System.Drawing.Color.White
-        Me.btnApprove.Location = New System.Drawing.Point(250, 465)
+        Me.btnApprove.Location = New System.Drawing.Point(250, 514)
         Me.btnApprove.Name = "btnApprove"
         Me.btnApprove.Size = New System.Drawing.Size(150, 35)
         Me.btnApprove.TabIndex = 3
@@ -79,7 +84,7 @@ Public Class AdminPermitReturn
         Me.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRefresh.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnRefresh.ForeColor = System.Drawing.Color.White
-        Me.btnRefresh.Location = New System.Drawing.Point(420, 465)
+        Me.btnRefresh.Location = New System.Drawing.Point(423, 514)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(120, 35)
         Me.btnRefresh.TabIndex = 4
@@ -92,18 +97,36 @@ Public Class AdminPermitReturn
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClose.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnClose.ForeColor = System.Drawing.Color.White
-        Me.btnClose.Location = New System.Drawing.Point(560, 465)
+        Me.btnClose.Location = New System.Drawing.Point(569, 514)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(120, 35)
         Me.btnClose.TabIndex = 5
         Me.btnClose.Text = "CLOSE"
         Me.btnClose.UseVisualStyleBackColor = False
         '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(136, Byte), Integer))
+        Me.Panel1.Location = New System.Drawing.Point(1, 555)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(957, 52)
+        Me.Panel1.TabIndex = 6
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(136, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.lblTitle)
+        Me.Panel2.Location = New System.Drawing.Point(1, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(957, 73)
+        Me.Panel2.TabIndex = 7
+        '
         'AdminPermitReturn
         '
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(957, 581)
-        Me.Controls.Add(Me.lblTitle)
+        Me.ClientSize = New System.Drawing.Size(957, 607)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.lblInfo)
         Me.Controls.Add(Me.dgvRequests)
         Me.Controls.Add(Me.btnApprove)
@@ -115,25 +138,26 @@ Public Class AdminPermitReturn
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Admin - Permit Book Return"
         CType(Me.dgvRequests, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
     Private Sub LoadReturnRequests()
         Try
-            Using conn As MySqlConnection = DatabaseHelper.GetConnection()
+            Using conn As SqlConnection = DatabaseHelper.GetConnection()
                 conn.Open()
-                Dim query As String = "SELECT rr.ReturnRequestID, rr.UserID, u.FullName AS `User Name`, " &
-                                     "rr.BookID, b.Title AS `Book Title`, b.Author, " &
-                                     "rr.RequestDate AS `Request Date`, rr.Status " &
+                Dim query As String = "SELECT rr.ReturnRequestID, rr.UserID, u.FullName AS [User Name], " &
+                                     "rr.BookID, b.Title AS [Book Title], b.Author, " &
+                                     "rr.RequestDate AS [Request Date], rr.Status " &
                                      "FROM ReturnRequests rr " &
                                      "INNER JOIN Users u ON rr.UserID = u.UserID " &
                                      "INNER JOIN Books b ON rr.BookID = b.BookID " &
                                      "WHERE rr.Status = 'Pending' " &
                                      "ORDER BY rr.RequestDate"
 
-                Using cmd As New MySqlCommand(query, conn)
-                    Dim adapter As New MySqlDataAdapter(cmd)
+                Using cmd As New SqlCommand(query, conn)
+                    Dim adapter As New SqlDataAdapter(cmd)
                     Dim dt As New DataTable()
                     adapter.Fill(dt)
                     dgvRequests.DataSource = dt

@@ -31,13 +31,16 @@ Partial Class AdminDashboard
         Me.btnPermitReturn = New System.Windows.Forms.Button()
         Me.btnGenerateReport = New System.Windows.Forms.Button()
         Me.btnLogout = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitle
         '
         Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(63, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(181, Byte), Integer))
-        Me.lblTitle.Location = New System.Drawing.Point(128, 41)
+        Me.lblTitle.ForeColor = System.Drawing.Color.White
+        Me.lblTitle.Location = New System.Drawing.Point(126, 6)
         Me.lblTitle.Name = "lblTitle"
         Me.lblTitle.Size = New System.Drawing.Size(560, 45)
         Me.lblTitle.TabIndex = 0
@@ -47,8 +50,8 @@ Partial Class AdminDashboard
         'lblWelcome
         '
         Me.lblWelcome.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblWelcome.ForeColor = System.Drawing.Color.Gray
-        Me.lblWelcome.Location = New System.Drawing.Point(109, 97)
+        Me.lblWelcome.ForeColor = System.Drawing.Color.WhiteSmoke
+        Me.lblWelcome.Location = New System.Drawing.Point(126, 61)
         Me.lblWelcome.Name = "lblWelcome"
         Me.lblWelcome.Size = New System.Drawing.Size(560, 30)
         Me.lblWelcome.TabIndex = 1
@@ -146,11 +149,32 @@ Partial Class AdminDashboard
         Me.btnLogout.Text = "LOGOUT"
         Me.btnLogout.UseVisualStyleBackColor = False
         '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(136, Byte), Integer))
+        Me.Panel1.Location = New System.Drawing.Point(3, 606)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(786, 59)
+        Me.Panel1.TabIndex = 9
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(136, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.lblTitle)
+        Me.Panel2.Controls.Add(Me.lblWelcome)
+        Me.Panel2.Location = New System.Drawing.Point(3, 3)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(786, 110)
+        Me.Panel2.TabIndex = 10
+        '
         'AdminDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(791, 667)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.btnLogout)
         Me.Controls.Add(Me.btnGenerateReport)
         Me.Controls.Add(Me.btnPermitReturn)
@@ -158,13 +182,12 @@ Partial Class AdminDashboard
         Me.Controls.Add(Me.btnPermitBorrowing)
         Me.Controls.Add(Me.btnRegisterBook)
         Me.Controls.Add(Me.btnRegisterUser)
-        Me.Controls.Add(Me.lblWelcome)
-        Me.Controls.Add(Me.lblTitle)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.Name = "AdminDashboard"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Admin Dashboard - Library Management System"
+        Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -178,4 +201,6 @@ Partial Class AdminDashboard
     Friend WithEvents btnPermitReturn As Button
     Friend WithEvents btnGenerateReport As Button
     Friend WithEvents btnLogout As Button
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel2 As Panel
 End Class

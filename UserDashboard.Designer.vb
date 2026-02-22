@@ -31,6 +31,7 @@ Partial Class UserDashboard
         Me.btnLogout = New System.Windows.Forms.Button()
         Me.panelHeader = New System.Windows.Forms.Panel()
         Me.panelButtons = New System.Windows.Forms.Panel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.panelHeader.SuspendLayout()
         Me.panelButtons.SuspendLayout()
         Me.SuspendLayout()
@@ -79,7 +80,7 @@ Partial Class UserDashboard
         Me.btnViewBooks.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnViewBooks.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnViewBooks.ForeColor = System.Drawing.Color.White
-        Me.btnViewBooks.Location = New System.Drawing.Point(307, 74)
+        Me.btnViewBooks.Location = New System.Drawing.Point(307, 31)
         Me.btnViewBooks.Name = "btnViewBooks"
         Me.btnViewBooks.Size = New System.Drawing.Size(280, 65)
         Me.btnViewBooks.TabIndex = 0
@@ -94,7 +95,7 @@ Partial Class UserDashboard
         Me.btnRequestBook.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRequestBook.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnRequestBook.ForeColor = System.Drawing.Color.White
-        Me.btnRequestBook.Location = New System.Drawing.Point(307, 201)
+        Me.btnRequestBook.Location = New System.Drawing.Point(307, 163)
         Me.btnRequestBook.Name = "btnRequestBook"
         Me.btnRequestBook.Size = New System.Drawing.Size(280, 65)
         Me.btnRequestBook.TabIndex = 1
@@ -109,7 +110,7 @@ Partial Class UserDashboard
         Me.btnReturnBook.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnReturnBook.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnReturnBook.ForeColor = System.Drawing.Color.White
-        Me.btnReturnBook.Location = New System.Drawing.Point(307, 318)
+        Me.btnReturnBook.Location = New System.Drawing.Point(307, 287)
         Me.btnReturnBook.Name = "btnReturnBook"
         Me.btnReturnBook.Size = New System.Drawing.Size(280, 65)
         Me.btnReturnBook.TabIndex = 2
@@ -124,7 +125,7 @@ Partial Class UserDashboard
         Me.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnLogout.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnLogout.ForeColor = System.Drawing.Color.White
-        Me.btnLogout.Location = New System.Drawing.Point(357, 425)
+        Me.btnLogout.Location = New System.Drawing.Point(371, 415)
         Me.btnLogout.Name = "btnLogout"
         Me.btnLogout.Size = New System.Drawing.Size(160, 40)
         Me.btnLogout.TabIndex = 3
@@ -145,7 +146,8 @@ Partial Class UserDashboard
         '
         'panelButtons
         '
-        Me.panelButtons.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.panelButtons.BackColor = System.Drawing.Color.White
+        Me.panelButtons.Controls.Add(Me.Panel1)
         Me.panelButtons.Controls.Add(Me.btnLogout)
         Me.panelButtons.Controls.Add(Me.btnReturnBook)
         Me.panelButtons.Controls.Add(Me.btnRequestBook)
@@ -155,6 +157,14 @@ Partial Class UserDashboard
         Me.panelButtons.Name = "panelButtons"
         Me.panelButtons.Size = New System.Drawing.Size(879, 530)
         Me.panelButtons.TabIndex = 4
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(136, Byte), Integer))
+        Me.Panel1.Location = New System.Drawing.Point(5, 461)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(871, 69)
+        Me.Panel1.TabIndex = 4
         '
         'UserDashboard
         '
@@ -183,4 +193,5 @@ Partial Class UserDashboard
     Friend WithEvents btnLogout As Button
     Friend WithEvents panelHeader As Panel
     Friend WithEvents panelButtons As Panel
+    Friend WithEvents Panel1 As Panel
 End Class
